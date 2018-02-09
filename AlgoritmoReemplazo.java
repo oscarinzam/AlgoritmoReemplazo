@@ -21,10 +21,11 @@ public class AlgoritmoReemplazo {
 		int tamano=referencia.length;
 		for(int i=0;i<tamano;i++) {
 			reemplazaPaginaFIFO(i);
-			imprimeCola(cola);
 			if(i!=tamano-1) {
 				copiaPagina(i);
 			}
+			System.out.print((i+1)+". ");
+			imprimeCola(cola);
 		}
 	}
 	public void AlgoritmoLRU() {
