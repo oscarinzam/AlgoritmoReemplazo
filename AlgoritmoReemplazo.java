@@ -48,8 +48,9 @@ public class AlgoritmoReemplazo {
 			}
 			else {
 				fallo[i]="X";
+				cola.add(referencia[i]);
 			}
-			cola.add(referencia[i]);
+			
 		}
 		else {
 			if(cola.contains(referencia[i])) {
@@ -80,8 +81,8 @@ public class AlgoritmoReemplazo {
 			}
 			else {
 				fallo[i]="X";
+				cola.add(referencia[i]);
 			}
-			cola.add(referencia[i]);
 		}
 		else {
 			if(cola.contains(referencia[i])) {
