@@ -27,7 +27,10 @@ public class Principal {
 		ar=new AlgoritmoReemplazo(numMarcos,Referencias);
 		ar.AlgoritmoLRU();
 		ar.imprimeElementos();
-		
+		System.out.println("Algoritmo Optimo");
+		ar=new AlgoritmoReemplazo(numMarcos,Referencias);
+		ar.AlgoritmoOptimo();
+		ar.imprimeElementos();
 	}
 
 }
