@@ -4,6 +4,7 @@ public class AlgoritmoReemplazo {
 	private String[][] marcos;
 	private String[] referencia;
 	private String[] fallo;
+	private String[] victimas;
 	private LinkedList<String> cola;
 	private int marcosUsados;
 	private int numMarcos;
@@ -12,10 +13,11 @@ public class AlgoritmoReemplazo {
 		marcosUsados=0;
 		this.numMarcos=nummarcos;
 		marcos=new String[referencia.length][nummarcos];
-		
 		this.referencia=referencia;
 		fallo=new String[referencia.length];
+		victimas=new String[referencia.length];
 		cola=new LinkedList<String>();
+		
 	}
 	public void AlgoritmoFifo() {
 		int tamano=referencia.length;
@@ -26,6 +28,7 @@ public class AlgoritmoReemplazo {
 			}
 			System.out.print((i+1)+". ");
 			imprimeCola(cola);
+			System.out.print(" "+victimas[i]+"\n");
 		}
 	}
 	public void AlgoritmoOptimo() {
@@ -37,6 +40,7 @@ public class AlgoritmoReemplazo {
 			}
 			System.out.print((i+1)+". ");
 			imprimeCola(cola);
+			System.out.print(" "+victimas[i]+"\n");
 		}
 	}
 	public void AlgoritmoLRU() {
@@ -48,6 +52,7 @@ public class AlgoritmoReemplazo {
 			}
 			System.out.print((i+1)+". ");
 			imprimeCola(cola);
+			System.out.print(" "+victimas[i]+"\n");
 		}
 	}
 	private void reemplazaPaginaOptimo(int i) {
@@ -62,14 +67,16 @@ public class AlgoritmoReemplazo {
 				fallo[i]="X";
 				cola.add(referencia[i]);
 			}
-			
+			victimas[i]="N/A";			
 		}
 		else {
 			if(cola.contains(referencia[i])) {
 				fallo[i]=" ";
+				victimas[i]="N/A";
 			}
 			else {
 				int masLejano=checarMasLejano(marcos[i],i);
+				victimas[i]="El elemento '"+referencia[i]+"' Sustituye a '"+marcos[i][masLejano]+"'";
 				cola.set(cola.indexOf(marcos[i][masLejano]),referencia[i]);
 				marcos[i][masLejano]=referencia[i];
 				fallo[i]="X";
@@ -88,16 +95,18 @@ public class AlgoritmoReemplazo {
 				fallo[i]="X";
 				cola.add(referencia[i]);
 			}
-			
+			victimas[i]="N/A";			
 		}
 		else {
 			if(cola.contains(referencia[i])) {
 				fallo[i]=" ";
-				cola.add(cola.removeFirst());				
+				cola.add(cola.removeFirst());
+				victimas[i]="N/A";
 			}
 			else {
 				fallo[i]="X";
 				String elementoRemovido= cola.removeFirst();
+				victimas[i]="El elemento '"+referencia[i]+"' entra y sale '"+elementoRemovido+"'";
 				for(int j=0;j<numMarcos;j++) {
 					if(marcos[i][j]==elementoRemovido) {
 						marcos[i][j]=referencia[i];
@@ -121,16 +130,18 @@ public class AlgoritmoReemplazo {
 				fallo[i]="X";
 				cola.add(referencia[i]);
 			}
+
+			victimas[i]="N/A";
 		}
 		else {
 			if(cola.contains(referencia[i])) {
 				fallo[i]=" ";
-				
-				
+				victimas[i]="N/A";				
 			}
 			else {
 				fallo[i]="X";
 				String elementoRemovido= cola.removeFirst();
+				victimas[i]="El elemento '"+referencia[i]+"' entra y sale '"+elementoRemovido+"'";
 				for(int j=0;j<numMarcos;j++) {
 					if(marcos[i][j]==elementoRemovido) {
 						marcos[i][j]=referencia[i];
@@ -191,7 +202,7 @@ public class AlgoritmoReemplazo {
 			}
 			System.out.println("");
 		}
-		System.out.print("Fallos:   \t\t");
+		System.out.print("Fallos:   \t");
 		for(int i = 0;i<fallo.length;i++) {
 			System.out.print(fallo[i]+"\t");
 		}
@@ -206,7 +217,7 @@ public class AlgoritmoReemplazo {
 			else
 				System.out.print(elemento);
 		}
-		System.out.println("");
+		//System.out.println("");
 	}
 	
 }
