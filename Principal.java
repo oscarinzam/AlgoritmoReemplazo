@@ -20,7 +20,7 @@ public class Principal {
 		}
 		sc.close();
 		AlgoritmoReemplazo ar= new AlgoritmoReemplazo(numMarcos, Referencias);
-		System.out.println("\nAlgoritmo FIFO\n");
+		System.out.println("\nAlgoritmo FIFOs2 \n");
 		ar.AlgoritmoFifo();
 		ar.imprimeElementos();
 		System.out.println("\nAlgoritmo LRU\n");
